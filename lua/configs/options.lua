@@ -11,7 +11,6 @@ opt.cursorline = true
 opt.expandtab = true
 opt.ignorecase = true
 opt.inccommand = "nosplit"
-opt.laststatus = 3
 opt.list = true
 opt.scrolloff = 4
 opt.shiftround = true
