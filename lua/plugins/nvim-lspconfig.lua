@@ -1,10 +1,15 @@
 return {
     { -- https://github.com/neovim/nvim-lspconfig
         "neovim/nvim-lspconfig",
+        lazy = false,
         config = function()
+            -- nvim-cmp auto completion
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
             -- Setup language servers.
             local lspconfig = require('lspconfig')
             lspconfig.clangd.setup {
+                capabilities = capabilities, -- for auto completion from cmp-nvim-lsp
                 keys = {
                     { "<leader>cR", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
                 },
@@ -32,6 +37,7 @@ return {
                     "--header-insertion=iwyu",
                     "--pch-storage=memory",
                     "--function-arg-placeholders",
+                    -- "--offset-encoding=utf-16",
                     "--fallback-style=llvm",
                 },
                 init_options = {
@@ -41,7 +47,8 @@ return {
                 },
             }
             lspconfig.rust_analyzer.setup {
-                -- Server-specific settings. See `:help lspconfig-setup`
+                capabilities = capabilities,
+
                 settings = {
                     ['rust-analyzer'] = {
                         diagnostics = {
@@ -69,8 +76,12 @@ return {
                     },
                 },
             }
-            lspconfig.pyright.setup {}
-            lspconfig.lua_ls.setup {}
+            lspconfig.pyright.setup {
+                capabilities = capabilities,
+            }
+            lspconfig.lua_ls.setup {
+                capabilities = capabilities,
+            }
 
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
