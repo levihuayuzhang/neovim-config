@@ -1,11 +1,16 @@
 -- traditional vim options
-
+local g = vim.g
 local opt = vim.opt
+
+g.encoding = "UTF-8"
+opt.fileencoding = "utf-8"
+
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 opt.number = true
 opt.relativenumber = true
 opt.autowrite = true
+opt.autoread = true
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
@@ -30,7 +35,7 @@ opt.wrap = false
 opt.winminwidth = 5
 
 -- highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
     end,
