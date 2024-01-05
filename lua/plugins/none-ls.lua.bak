@@ -1,0 +1,26 @@
+-- https://github.com/nvimtools/none-ls.nvim
+
+return {
+    "nvimtools/none-ls.nvim",
+    config = function()
+        local null_ls = require("null-ls")
+
+        null_ls.setup({
+            sources = { -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+                null_ls.builtins.diagnostics.clang_check,
+                null_ls.builtins.formatting.clang_format,
+                -- null_ls.builtins.diagnostics.cppcheck, -- fast
+                -- null_ls.builtins.diagnostics.cpplint, -- google style
+                -- null_ls.builtins.diagnostics.gccdiag, -- compiler wrapper
+                -- null_ls.builtins.formatting.astyle, -- for Arduino project
+                null_ls.builtins.formatting.uncrustify,
+                null_ls.builtins.formatting.stylua,
+                null_ls.builtins.diagnostics.prettier,
+                null_ls.builtins.diagnostics.eslint,
+                null_ls.builtins.completion.spell,
+            },
+        })
+
+        vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, { desc = "format buffer" })
+    end,
+}
