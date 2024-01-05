@@ -13,6 +13,8 @@ return {
             configs.setup({
                 ensure_installed = { "c",
                     "rust",
+                    "toml",
+                    "ron",
                     "c",
                     "cpp",
                     "java",

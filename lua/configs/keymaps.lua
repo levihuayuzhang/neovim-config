@@ -8,10 +8,10 @@ local map = vim.keymap
 map.set('n', '<c-a>', 'ggVG', { desc = 'select all text' })
 map.set({ 'n', 'x' }, '<leader>p', '"0p', { desc = 'paste only from copy not delete' })
 map.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Show lazy.vim' })
-map.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'quick quit' })
+-- map.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'quick quit' })
 map.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-map.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'quick write (save)' })
-map.set('n', '<leader>x', '<cmd>x<cr>', { desc = 'quick exit (close current buffer)' })
+-- map.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'quick write (save)' })
+-- map.set('n', '<leader>x', '<cmd>x<cr>', { desc = 'quick exit (close current buffer)' })
 
 -- better up/down
 map.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
