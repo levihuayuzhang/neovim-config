@@ -12,6 +12,12 @@ return {
     },
     { -- https://github.com/hrsh7th/nvim-cmp
         "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "onsails/lspkind.nvim",
+        },
         config = function()
             -- Set up nvim-cmp.
             local cmp = require("cmp")
@@ -40,12 +46,11 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
-                    -- { name = 'vsnip' }, -- For vsnip users.
                     { name = "luasnip" }, -- For luasnip users.
-                    -- { name = 'ultisnips' }, -- For ultisnips users.
-                    -- { name = 'snippy' }, -- For snippy users.
-                }, {
+                    { name = "nvim_lua" },
+                    { name = "path" },
                     { name = "buffer" },
+
                 }),
             })
         end,

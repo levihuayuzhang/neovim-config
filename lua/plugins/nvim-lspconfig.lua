@@ -1,10 +1,22 @@
 return {
     { -- https://github.com/neovim/nvim-lspconfig
         "neovim/nvim-lspconfig",
+        dependencies = {
+            "folke/neodev.nvim",
+        },
         lazy = false,
         config = function()
             -- nvim-cmp auto completion
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+            require("neodev").setup({
+                lspconfig = true,
+                override = function(_, library)
+                    library.enabled = true
+                    library.plugins = true
+                    library.types = true
+                end,
+            })
 
             -- Setup language servers.
             local lspconfig = require('lspconfig')
@@ -105,19 +117,22 @@ return {
                     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'buf definition' })
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'buffer hover' })
                     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'buf implementation' })
-                    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { desc = 'signaure help' })
-                    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, {})
-                    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, {})
+                    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, { desc = 'Workspace Add Folder' })
+                    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder,
+                        { desc = 'Workspace Remove Folder' })
                     vim.keymap.set('n', '<space>wl', function()
                         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                     end, {})
                     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { desc = 'type definition' })
-                    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { desc = 'buf rename' })
-                    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, { desc = 'code action' })
-                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'buf references' })
-                    vim.keymap.set('n', '<space>f', function()
-                        vim.lsp.buf.format { async = true }
-                    end, {})
+
+                    -- better lsp actions
+                    vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<CR>', { desc = 'hover info' })
+                    vim.keymap.set("n", "<leader>pd", "<cmd>Lspsaga peek_definition<CR>", { desc = "Peek Definition" })
+                    vim.keymap.set("n", "<leader>pr", "<cmd>Lspsaga finder ref<CR>", { desc = "[F]inder" })
+                    vim.keymap.set("n", "<c-k>", "<cmd>Lspsaga hover_doc<CR>", { desc = "Hover Documentation" })
+                    vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename ++project<cr>", { desc = "Rename" })
+                    vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { desc = "Code Action" })
+                    vim.keymap.set("n", "<leader>ot", "<cmd>Lspsaga outline<CR>", { desc = "OutLine" })
                 end,
             })
         end

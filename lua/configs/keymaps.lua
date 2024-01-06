@@ -1,13 +1,12 @@
 -- keymaps
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 local map = vim.keymap
 
-
-map.set('n', '<c-a>', 'ggVG', { desc = 'select all text' })
-map.set({ 'n', 'x' }, '<leader>p', '"0p', { desc = 'paste only from copy not delete' })
-map.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Show lazy.vim' })
+map.set("n", "<c-a>", "ggVG", { desc = "select all text" })
+-- map.set({ 'n', 'x' }, '<leader>p', '"0p', { desc = 'paste only from copy not delete' })
+map.set("n", "<leader>l", "<cmd>Lazy<CR>", { desc = "Show lazy.vim" })
 -- map.set('n', '<leader>q', '<cmd>q<cr>', { desc = 'quick quit' })
 map.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 -- map.set('n', '<leader>w', '<cmd>w<cr>', { desc = 'quick write (save)' })
@@ -77,5 +76,4 @@ map.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
-
-map.set('n', '<leader>nh', ':nohl<CR>', { desc = 'clear search highlights' })
+map.set("n", "<leader>nh", ":nohl<CR>", { desc = "clear search highlights" })
