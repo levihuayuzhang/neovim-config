@@ -4,7 +4,7 @@ return {
     opts = function(_, opts)
       opts.servers.clangd.cmd = {
         "clangd",
-        "-j=10",
+        "-j=12",
         "--compile-commands-dir=build",
         "--background-index",
         "--clang-tidy",
