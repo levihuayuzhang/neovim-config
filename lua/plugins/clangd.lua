@@ -5,6 +5,7 @@ return {
       opts.servers.clangd.cmd = {
         "clangd",
         "-j=10",
+        "--compile-commands-dir=build",
         "--background-index",
         "--clang-tidy",
         "--clang-tidy-checks=performance-*,bugprone-*,portability-*,modernize-*",
